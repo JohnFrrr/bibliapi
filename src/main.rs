@@ -1,10 +1,8 @@
 use redb::{Database, TableDefinition};
 
-use csv::ReaderBuilder; // Import redb::Error
+use csv::ReaderBuilder;
 use std::error::Error;
-use std::fs::File; // Import csv::Error
-                   // Define a custom error enum to encapsulate both error types
-                   // Define a custom error enum to encapsulate multiple error types
+use std::fs::File;
 
 const VERSES: TableDefinition<(u8, u8, u8), &str> = TableDefinition::new("VERSES");
 
@@ -12,9 +10,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Open the CSV file
     let file = File::open("db/VERSES.csv")?;
     // Create a CSV reader
-    let mut rdr = ReaderBuilder::new()
-        .has_headers(false) // Specify if the file has headers
-        .from_reader(file);
+    let mut rdr = ReaderBuilder::new().has_headers(false).from_reader(file);
     let db = Database::create("db/biblia.redb")?;
     let write_txn = db.begin_write()?;
     {
@@ -27,7 +23,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             table.insert((book, chapter, verse), &record[3])?;
         }
     }
-    // Iterate over each record
 
     write_txn.commit()?;
 
