@@ -1,5 +1,7 @@
 FROM rust:alpine AS builder
 
+RUN apk add --no-cache musl-dev gcc
+
 WORKDIR /workspace
 
 COPY . .
