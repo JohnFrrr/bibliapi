@@ -55,7 +55,7 @@ async fn main() {
 async fn get_chapter_verses(
     Path((book_number, chapter_number)): Path<(u8, u8)>,
 ) -> Json<ResponseWrapper<ChapterVerses>> {
-    let connection = match Connection::open("biblia.db") {
+    let connection = match Connection::open("./db/biblia.db") {
         Ok(conn) => conn,
         Err(_) => panic!("Failed to connect to the database"),
     };
