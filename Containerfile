@@ -17,6 +17,9 @@ RUN adduser -D app_user
 
 WORKDIR /app
 
+# Create a 'db' subfolder
+RUN mkdir db
+
 # Copy the compiled binary from the builder stage
 COPY --from=builder --chown=app_user:app_user /usr/local/cargo/bin/bibliapi .
 
@@ -25,8 +28,4 @@ RUN chmod +x ./bibliapi
 
 USER app_user
 
-# Temporary command for debugging
-CMD ["sh", "-c", "ls -l /app && ./bibliapi"]
-
-# Uncomment the line below when ready to run the application
 CMD ["./bibliapi"]
