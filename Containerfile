@@ -26,7 +26,7 @@ RUN chmod +x ./bibliapi
 USER app_user
 
 # Temporary command for debugging
-# CMD ["sh", "-c", "ls -l /app && ./bibliapi"]
+CMD ["sh", "-c", "ls -l /app && ./bibliapi"]
 
 # Uncomment the line below when ready to run the application
 CMD ["./bibliapi"]
